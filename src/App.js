@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     axios
       .get(
-        "https://api.weatherapi.com/v1/current.json?key=13851a9789f84228ba7172143251702&q=Moscow&aqi=no"
+        "http://api.weatherapi.com/v1/current.json?key=160bf3754ddf46bb878164043252402&q=Uzbekistan&aqi"
       )
       .then((data) => {
         setWeather(data.data);
@@ -25,7 +25,7 @@ function App() {
   const searchBtn = () => {
     axios
       .get(
-        `https://api.weatherapi.com/v1/current.json?key=13851a9789f84228ba7172143251702&q=${input}`
+        `http://api.weatherapi.com/v1/current.json?key=160bf3754ddf46bb878164043252402&q=${input}&aqi`
       )
       .then((data) => {
         setWeather(data.data);
@@ -37,40 +37,49 @@ function App() {
     <div className="App">
       <h1>Weather App</h1>
       <div className="search">
-        <input value={input} className="search-input" onChange={searchInput} type="text" placeholder="Enter a city" />
-        <button className="search-btn" onClick={searchBtn}>Search</button>
+        <input
+          value={input}
+          className="search-input"
+          onChange={searchInput}
+          type="text"
+          placeholder="Enter a city"
+        />
+        <button className="search-btn" onClick={searchBtn}>
+          Search
+        </button>
       </div>
       {weather && (
         <div className="weather-info">
           <p>
-            <b>Country: </b>
-            {weather.location.country}
+            <b>Shahar/Tuman: </b>
+            {weather.location.name}
           </p>
           <p>
-            <b>Region: </b>
+            <b>Viloyat: </b>
             {weather.location.region}
           </p>
           <p>
-            <b>TZ: </b>
+            <b>Mamlakat: </b>
+            {weather.location.country}
+          </p>
+          <p>
+            <b>Qi'ta: </b>
             {weather.location.tz_id}
           </p>
-          <img
-            src={weather.current.condition.icon}
-            alt="Weather icon"
-          />
           <p>
-            <b>Temperature: </b>
+            <b>Harorat: </b>
             {weather.current.temp_c}
             <sup>o</sup>C
           </p>
           <p>
-            <b>Humidity: </b>
+            <b>Namlik: </b>
             {weather.current.humidity}
           </p>
           <p>
-            <b>Wind: </b>
-            {weather.current.wind_kph}
+            <b>Shamol tezligi: </b>
+            {weather.current.wind_kph} km/s
           </p>
+          <img src={weather.current.condition.icon} alt="Weather icon" />
         </div>
       )}
     </div>
