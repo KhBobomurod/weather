@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     axios
       .get(
-        "http://api.weatherapi.com/v1/current.json?key=160bf3754ddf46bb878164043252402&q=Uzbekistan&aqi"
+        "https://api.weatherapi.com/v1/current.json?key=160bf3754ddf46bb878164043252402&q=Uzbekistan&aqi"
       )
       .then((data) => {
         setWeather(data.data);
@@ -25,7 +25,7 @@ function App() {
   const searchBtn = () => {
     axios
       .get(
-        `http://api.weatherapi.com/v1/current.json?key=160bf3754ddf46bb878164043252402&q=${input}&aqi`
+        `https://api.weatherapi.com/v1/current.json?key=160bf3754ddf46bb878164043252402&q=${input}&aqi`
       )
       .then((data) => {
         setWeather(data.data);
